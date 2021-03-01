@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import List from './Components/List/List';
+import Form from './Components/Form/Form'
 import axios from 'axios';
 
 import { whithCreadential, request } from './help/request';
+
 
 export default class App extends Component {
   state = {
@@ -11,6 +13,7 @@ export default class App extends Component {
     loader: true,
     error: false,
     text: '',
+    search: '',
   };
 
   // --------------------------------------> Через then
@@ -28,6 +31,7 @@ export default class App extends Component {
         });
       })
       .catch(error => {
+        console.dir(error)
         this.setState({
           loader: false,
           error: true,
@@ -66,10 +70,47 @@ export default class App extends Component {
   //     })
   //   )
   // }
+//----------------------------------------> ДОЗАГРУЗКА (нужно доработать)!!!!
+//   componentDidUpdate() {
+//     const{search} = this.state
+//     const url = whithCreadential(`https://api.github.com/search/repositories?q=${search}`)
+
+//     const result = request('get', url).then(res => {
+//       const result = res.data.items;
+//       console.log(result);
+//       this.setState({
+//         repos: [...result],
+//         loader: false,
+//       });
+//     })
+//     .catch(error => {
+//       console.dir(error)
+//       this.setState({
+//         loader: false,
+//         error: true,
+//         text: error,
+//       });
+//     });
+// }
+
+
+  getSearch = (data) => {
+    this.setState({
+      search: [...data],
+    })
+  }
+
+//  searchValue = () => {
+
+//  }
+
 
   render() {
     return (
       <div>
+        <Form
+        getSerach={this.getSearch}
+        />
         <List
           repos={this.state.repos}
           loader={this.state.loader}
