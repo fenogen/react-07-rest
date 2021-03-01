@@ -50,7 +50,7 @@ class Form extends Component {
   render() {
     return (
       <form className="form"
-    //   onClick={this.submitHeandler}
+    //   onSubmit={this.submitHeandler}
       >
         <input
           type="text"
