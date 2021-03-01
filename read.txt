@@ -1,5 +1,0 @@
-Client ID
-bfc01b42791080598cc6
-
-npm install uuid                           уникальный айди
-npm install react-loader-spinner --save    спинер
